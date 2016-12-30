@@ -1,0 +1,7 @@
+{
+  "name": "trigonometry",
+  "short_name": "trigonometry",
+  "description": "triangle",
+  "start_url": "/",
+  "display": "standalone"
+}

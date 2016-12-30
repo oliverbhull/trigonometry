@@ -1,0 +1,81 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+
+<dom-module id="trig-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    	<h1 align = "center">Trigonometry</h1>
+    
+   		<div align = "center">
+    	<img style = "width:256px;height:101.75px" src = "http://etc.usf.edu/clipart/36700/36740/tri19_36740_lg.gif">
+    	</div>
+   		<br><br><br>
+
+    	<div align = "center">
+    		<p1>Side A:  </p1><input type = "number" id = "A" value ="{{value_a::input}}"><p1>Angle A:  </p1><input type = "number" id = "angle_A" value = "{{value_a_angle::input}}"><br>
+
+    		<p2>Side B:  </p2><input type = "number" id = "B" value ="{{value_b::input}}"><p2>Angle B:  </p2><input type = "number" id = "angle_B" value ="{{value_b_angle::input}}"><br>
+
+    		<p3>Side C:  </p3><input type = "number" id = "C" value ="{{value_c::input}}"><p3>Angle C:  </p3><input type = "number" id = "angle_C" value ="{{value_c_angle::input}}"><br>
+   
+    		<br>
+    		<paper-button raised on-click = "solve">Solve</paper-button>
+    		<paper-button raised on-click = "reset">Reset</paper-button>
+    	</div>
+    	<br>
+   		<br>
+    
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'trig-app',
+
+      solve: function(){
+
+
+      
+//A      
+      if (angle_A.value != 0){
+        A.value = Math.sqrt((Math.pow(B.value,2)+Math.pow(C.value,2))+(-1*(2*(B.value)*(C.value)*Math.cos(angle_A.value*(Math.PI)/180))));
+      };
+      if (A.value != 0){
+      	angle_A.value = Math.acos((Math.pow(A.value,2) - (Math.pow(B.value,2) + Math.pow(C.value,2)))/(-1*(2*B.value*C.value)))*(180/Math.PI);
+      };
+//B
+      if (angle_B.value != 0){
+        B.value = Math.sqrt((Math.pow(A.value,2)+Math.pow(C.value,2))+(-1*(2*(A.value)*(C.value)*Math.cos(angle_B.value*(Math.PI)/180))));
+      };
+      if (B.value != 0){
+        angle_B.value = Math.acos((Math.pow(B.value,2) - (Math.pow(A.value,2) + Math.pow(C.value,2)))/(-1*(2*A.value*C.value)))*(180/Math.PI);
+      };
+//C
+      if (angle_C.value != 0){
+        C.value = Math.sqrt((Math.pow(A.value,2)+Math.pow(B.value,2))+(-1*(2*(A.value)*(B.value)*Math.cos(angle_C.value*(Math.PI)/180))));
+      };   
+      if (C.value != 0){
+        angle_C.value = Math.acos((Math.pow(C.value,2) - (Math.pow(A.value,2) + Math.pow(B.value,2)))/(-1*(2*A.value*B.value)))*(180/Math.PI);
+      };
+
+      },
+
+      reset: function(){
+        A.value = null;
+        B.value = null;
+        C.value = null;
+        angle_A.value = null;
+        angle_B.value = null;
+        angle_C.value = null;
+      }
+    });
+
+
+  </script>
+</dom-module>
